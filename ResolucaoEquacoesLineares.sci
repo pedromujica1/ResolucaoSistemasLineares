@@ -419,65 +419,61 @@ function [X, k] = gauss_jacobi_guloso(A, B, epsilon, Nmax)
     printf("\n***** ENCERRAMENTO DO GAUSS-JACOBI COM MÉTODO GULOSO *****\n");
 endfunction
 
-// Dados de entrada
-//A = [0.1, 0.2, 1.0, 0.3;
-//     0.3, 2.0, -0.3, -0.9;
-//     4.0, 2.0, -0.3, 0.8;
-//     0.6, 3.2, -1.8, 0.4];
-//B = [4.0; 7.5; 4.4; 10.0];
+// Problema 1.1 - Resolver os sistemas por:
+// 1) Método de Gauss:
+//     - Exibir matriz A original
+//     - Exibir vetor B original
+//     - Exibir dimensão n
+//     - Exibir matriz A triangularizada
+//     - Exibir vetor B escalonado
+//     - Exibir solução X do sistema
+//     - Verificar os resultados AX ≈ B
+//
+// 2) Método de LU (Fatoração):
+//     - Exibir matriz A original
+//     - Exibir vetor B original
+//     - Exibir dimensão n
+//     - Exibir fatores L e U
+//     - Resolver LY = B (substituição progressiva)
+//     - Resolver UX = Y (substituição regressiva)
+//     - Verificar os resultados AX ≈ B
 
-// Parâmetros de controle
-//epsilon = 1.0e-6;
-//Nmax = 100;
+// Problema 1.2 - Resolver sistemas tridiagonais pelo método de Thomas (TDMA)
+//     - Exibir vetores originais a, b, c, d
+//     - Resolver o sistema
+//     - Exibir solução X do sistema
+//     - Verificar os resultados AX ≈ D (erro absoluto)
 
-// Chamada da função
-//[X, iteracoes] = gauss_jacobi_guloso(A, B, epsilon, Nmax);
+// Problema 1.3 - Resolver sistemas com métodos iterativos:
+//     - Gauss-Jacobi e Gauss-Seidel
+//     - Usar precisão de 6 casas decimais
+//     - Critério de parada: erro < 1e-6
+//     - Vetor inicial: nulo
+//     - Se necessário, aplicar reordenação gulosa para convergência
+//
+// Exibir no console:
+//     - Matrizes A e B originais
+//     - Dimensão n
+//     - Número de iterações até convergência
+//     - Solução aproximada X
+//     - Verificação dos resultados AX ≈ B
+// Problema 2.1 - Dieta de vitaminas:
+//     - Sistema baseado em 3 alimentos (I, II e III) com vitaminas A, B e C
+//     - Ingerir combinação que satisfaça 170u A, 180u B, 140u C
+//     - Resolver o sistema por todos os métodos (Gauss, LU, TDMA se aplicável, Jacobi, Seidel)
 
+// Problema 2.2 - Produção de 4 tipos de PCs com restrições de recursos:
+//     - Recursos: mão-de-obra, metais, plásticos, eletrônicos
+//     - Resolver o sistema para encontrar quantos PCs de cada tipo devem ser produzidos
+//     - Resolver por todos os métodos possíveis
 
+// Problema 2.3 - Transporte de cargas por 3 tipos de caminhões (C1, C2, C3)
+//     - Requisitos: 12 Cargas A, 10 Cargas B, 16 Cargas C
+//     - Cada caminhão transporta diferentes combinações
+//     - Resolver o sistema por todos os métodos
 
+// Problema 2.4 - Estoque de ferramentas:
+//     - Determinar quantidades de martelos (m), chaves (c), alicates (a) e serras (s)
+//     - Com base em 4 equações com combinações desses itens
+//     - Resolver o sistema por todos os métodos disponíveis
 
-// Definindo entrada
-//A = [3, 2, 4; 1, 1, 2; 4, 3, -2];
-//B = [1; 2; 3];
-
-// Chamando a função
-//X = lu_crout(A, B);
-
-
-
-
-
-// Entrada dos dados
-//a = [0; -5; -5; -5];
-//b = [20; 15; 15; 19];
-//c = [-5; -5; -5; 0];
-//d = [1100; 100; 100; 100];
-
-// Chamada da função
-//X = tdma_thomas(a, b, c, d);
-
-
-
-
-// Dados do sistema
-//A = [0.1, 0.2, 1.0, 0.3;
-//     0.3, 2.0, -0.3, -0.9;
-//     4.0, 2.0, -0.3, 0.8;
-//     0.6, 3.2, -1.8, 0.4];
-//B = [4.0; 7.5; 4.4; 10.0];
-
-// Parâmetros
-//epsilon = 1.0e-6;
-//Nmax = 100;
-
-// Chamada da função
-//X = gauss_seidel_guloso(A, B, epsilon, Nmax);
-
-
-
-
-
-//A = [3, 2, 4; 1, 1, 2; 4, 3, -2];
-//B = [1; 2; 3];
-
-//x = gauss_sem_pivoteamento(A, B);
