@@ -1,5 +1,14 @@
+//-------TRABALHO 1-P2-RESOLUÇÃO DE SISTEMAS DE EQUAÇÕES LINEARES----------------
+//Alunos: Pedro Miotto Mujica, Thiago Oliveira Dupim, Vinicius Castaman, Gabriel Costa
+//Resolvendo Sistemas de Equações Lineares
+funcprot(0);
+clear(); clc();
+h = 300; F = 0.8; D = 14; C = 1200; //constantes exercicio 2.2
+d = 10 //constante exercicio 2.3
+O = 5 //constante exercicio 2.4
+printf("*** RESOLUÇÃO DE SISTEMAS DE EQUAÇÕES LINEARES ***\n")
+
 function x = gauss_sem_pivoteamento(A_original, B_original)
-    clc();
     printf("*** MÉTODO DIRETO: GAUSS (ELIMINAÇÃO GAUSSIANA) SEM PIVOTEAMENTO ***\n\n");
 
     // Exibe entradas
@@ -27,8 +36,20 @@ function x = gauss_sem_pivoteamento(A_original, B_original)
         end
     end
 
-    // Substituição regressiva
+    //Substituição regressiva
     x = zeros(n,1);
+    printf("\n---------------------------")
+    printf("\n****Dimensão de n: %d variáveis\n****", n);
+    printf("-----------------------------")
+
+    printf("\n****Matriz A triangularizada:****")
+
+    disp(A_copia)
+
+    printf("****Vetor B escalonado:****")
+
+    disp(B_copia)
+
     x(n) = B_copia(n) / A_copia(n,n);
     for k = n-1:-1:1
         soma = 0;
@@ -68,11 +89,11 @@ function x = gauss_sem_pivoteamento(A_original, B_original)
 endfunction
 
 function X = gauss_seidel_guloso(A_original, B_original, epsilon, Nmax)
-    clc();
     printf("*** MÉTODO ITERATIVO: GAUSS-SEIDEL (REORDENAÇÃO GULOSA) ***\n");
 
     n = size(A_original,1);
     X0 = zeros(n,1);
+    printf("\nO sistema possui %d variáveis (dimensão da raiz x).\n", n);
     X = X0;
     
     printf("\n Matriz A original:\n");
@@ -166,7 +187,6 @@ function X = gauss_seidel_guloso(A_original, B_original, epsilon, Nmax)
 endfunction
 
 function X = tdma_thomas(a, b, c, d)
-    clc();
     printf("*** MÉTODO DIRETO: THOMAS (TDMA) - SISTEMAS TRIDIAGONAIS ***\n");
 
     // Guarda cópias dos vetores originais para cálculo do erro
@@ -206,6 +226,7 @@ function X = tdma_thomas(a, b, c, d)
 
     // Substituição regressiva
     X = zeros(n,1);
+    printf("\nO sistema possui %d variáveis (dimensão da raiz x).\n", n);
     X(n) = d(n);
     for i = n-1:-1:1
         X(i) = d(i) - c(i) * X(i+1);
@@ -223,6 +244,22 @@ function X = tdma_thomas(a, b, c, d)
         A(i, i+1) = c_original(i);
     end
 
+    // Verificação dos resultados (AX ≈ d)
+    printf("\nVerificação dos resultados (A*X ≈ d):\n");
+    for i = 1:n
+        s = 0;
+        for j = 1:n
+            s = s + A(i,j) * X(j);
+            if j < n then
+                printf(" (%.1f*%.6f) +", A(i,j), X(j));
+            else
+                printf(" (%.1f*%.6f) = ", A(i,j), X(j));
+                printf("%.6f\n", s);
+            end
+        end
+    end
+    
+
     printf("\n Erro absoluto (A*X - d):\n");
     erro = A * X - d_original;
     disp(erro);
@@ -231,24 +268,23 @@ function X = tdma_thomas(a, b, c, d)
 endfunction
 
 function X = lu_crout(A, B)
-    clc();
-    printf("\n***** MÉTODO DIRETO: FATORAÇÃO LU por CROUT *****\n\n")
+    printf("***** MÉTODO DIRETO: FATORAÇÃO LU por CROUT\n *****")
 
     // Armazena cópias originais
     A_original = A;
     B_original = B;
 
-    printf("Entrada - Matriz A (original):\n")
+    printf("Entrada - Matriz A (original):")
     disp(A_original)
 
-    printf("\nEntrada - Vetor B (original):\n")
+    printf("\nEntrada - Vetor B (original):")
     disp(B_original)
 
     n = length(B);
     L = zeros(n, n);
     U = eye(n, n); // U com diagonal principal 1 (Crout)
 
-    // Fatoração LU
+    //Fatoração LU
     for j = 1:n
         for i = j:n
             soma = 0;
@@ -280,8 +316,18 @@ function X = lu_crout(A, B)
         end
         Y(i) = (B(i) - soma) / L(i,i);
     end
+    printf("\n---------------------------")
+    printf("\n****Dimensão de n: %d variáveis****", n);
+    printf("-----------------------------")
 
-    printf("\nSolução Y (LY = B):\n")
+    //mostrar Matriz triangularizada e vetor B escalonado
+    printf("\n*****FATOR L:*****")
+    disp(L)
+
+    printf("\n*****FATOR U:*****")
+    disp(U)
+
+    printf("\nSolução Y de LY=B:")
     disp(Y)
 
     // Resolvendo UX = Y (substituição regressiva)
@@ -298,7 +344,7 @@ function X = lu_crout(A, B)
     mprintf(" x(%d) = %.6f\n", [(1:n)', X]);
 
     // Verificação AX ≈ B
-    printf("\nVerificação dos resultados (A*X ≈ B):\n")
+    printf("\nVerificação dos resultados (A*X ≈ B):")
     for i = 1:n
         s = 0;
         for j = 1:n
@@ -320,7 +366,6 @@ function X = lu_crout(A, B)
 endfunction
 
 function [X, k] = gauss_jacobi_guloso(A, B, epsilon, Nmax)
-    clc();
     printf("*** MÉTODO ITERATIVO: GAUSS-JACOBI (REORDENAÇÃO GULOSA) ***\n");
 
     n = size(A,1);
@@ -419,49 +464,37 @@ function [X, k] = gauss_jacobi_guloso(A, B, epsilon, Nmax)
     printf("\n***** ENCERRAMENTO DO GAUSS-JACOBI COM MÉTODO GULOSO *****\n");
 endfunction
 
-// Problema 1.1 - Resolver os sistemas por:
-// 1) Método de Gauss:
-//- Exibir matriz A original
-//- Exibir vetor B original
-//- Exibir dimensão n
-//- Exibir matriz A triangularizada
-//- Exibir vetor B escalonado
-//- Exibir solução X do sistema
-//- Verificar os resultados AX ≈ B
-//Sistemas:
-
+// Problema 1.1 - Resolver os sistemas por 1) Método de Gauss: e 2) LU:
+//------------------------------Sistemas----------------------------
 // Sistema S₃ - Exemplo 1
 // x1 + x2 + x3 = 1
 // 2x1 + x2 − x3 = 0
 // 2x1 + 2x2 + x3 = 1
-//A_original = [1, 1, 1; 2, 1, -1; 2, 2, 1]
-//B_original = [1; 0; 1]
 
-A = [1.0, 1.0, 1.0;
-     2.0, 1.0, -1.0;
-     2.0, 2.0, 1.0];
-
-B = [1.0; 0.0; 1.0];
-
-// Parâmetros de controle
-epsilon = 1.0e-6;
-Nmax = 100;
-
-// Chamada da função
-gauss_sem_pivoteamento(A,B);
-
-
-
+//A = [1.0, 1.0, 1.0;     2.0, 1.0, -1.0; 2.0, 2.0, 1.0];
+//B = [1.0; 0.0; 1.0];
+//sistemaS3111 =gauss_sem_pivoteamento(A,B); //chamada de funções
+//sistemaS3111 = lu_crout(A,B); //chamada de metódos
 
 // Sistema S₃ - Exemplo 2
 // x1 + x2 + x3 = −2
 // 2x1 + x2 − x3 = 1
 // 2x1 − x2 + x3 = 3
 
+//A = [1.0, 1.0, 1.0;     2.0, 1.0, -1.0;     2.0, -1.0, 1.0];
+//B = [-2.0; 1.0; 3.0];
+//sistemaS3112 =gauss_sem_pivoteamento(A,B); //chamada de funções
+//sistemaS3112 = lu_crout(A,B); //chamada de metódos
+
 // Sistema S₃ - Exemplo 3
 // x1 + 10x2 + 3x3 = 27
 // 4x1 + x3 = 6
 // 2x1 + x2 + 4x3 = 12
+
+//A = [1.0, 10, 3.0;     4.0, 1.0, 0.0;     2.0, 1.0, 4.0];
+//B = [27.0; 6.0; 12.0];
+//sistemaS3113 =gauss_sem_pivoteamento(A,B); //chamada de funções
+//sistemaS3113 = lu_crout(A,B); //chamada de metódos
 
 // Sistema S₄
 // 1,0x1 + 0,2x2 + 1,0x3 + 0,3x4 = 4,0
@@ -469,25 +502,33 @@ gauss_sem_pivoteamento(A,B);
 // 0,0x1 + 2,0x2 − 0,3x3 + 0,8x4 = 4,4
 // 0,6x1 + 3,2x2 − 1,8x3 + 0,4x4 = 10
 
-
+//A = [0.1, 0.2, 1.0,0.3;   0.3, 2.0, -0.3,-0.9;   4.0, 2.0, -0.3, 0.8;  0.6, 3.2, -1.8, 0.4];
+//B = [4.0; 7.5; 4.4; 10.0];
+//sistemaS3114 =gauss_sem_pivoteamento(A,B); //chamada de funções
+//sistemaS3114 = lu_crout(A,B); //chamada de metódos
 
 // Problema 1.2 - Resolver sistemas tridiagonais pelo método de Thomas (TDMA)
-//     - Exibir vetores originais a, b, c, d
-//     - Resolver o sistema
-//     - Exibir solução X do sistema
-//     - Verificar os resultados AX ≈ D (erro absoluto)
-
-
+//------------------------------Sistemas----------------------------
 // Sistema S₄ - Exemplo 1
 // 20x1 − 5x2           = 1100
 // −5x1 + 15x2 − 5x3     = 100
 //       −5x2 + 15x3 − 5x4 = 100
 //             −5x3 + 19x4 = 100
+//a = [0; -5; -5; -5]; // começa com zero
+//b = [20; 15; 15; 19];
+//c = [-5; -5; -5; 0]; // termina com zero
+//d = [1100; 100; 100; 100];
+//sistemaS4121 = tdma_thomas(a,b,c,d); //chamada de funções
 
 // Sistema S₄ - Exemplo 2
 // −x1 + 3x2 − x3     = 1
 // −x2 + 3x3 − x4     = 1
 // −x3 + 3x4          = 2
+a = [0; -1; -1; -1];
+b = [3; 3; 3; 3];
+c = [-1; -1; -1; 0];
+d = [2; 1; 1; 2];
+sistemaS4122 = tdma_thomas(a,b,c,d); //chamada de funções
 
 
 // Problema 1.3 - Resolver sistemas com métodos iterativos:
