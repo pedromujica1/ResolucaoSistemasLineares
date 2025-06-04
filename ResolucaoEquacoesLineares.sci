@@ -421,22 +421,55 @@ endfunction
 
 // Problema 1.1 - Resolver os sistemas por:
 // 1) Método de Gauss:
-//     - Exibir matriz A original
-//     - Exibir vetor B original
-//     - Exibir dimensão n
-//     - Exibir matriz A triangularizada
-//     - Exibir vetor B escalonado
-//     - Exibir solução X do sistema
-//     - Verificar os resultados AX ≈ B
-//
-// 2) Método de LU (Fatoração):
-//     - Exibir matriz A original
-//     - Exibir vetor B original
-//     - Exibir dimensão n
-//     - Exibir fatores L e U
-//     - Resolver LY = B (substituição progressiva)
-//     - Resolver UX = Y (substituição regressiva)
-//     - Verificar os resultados AX ≈ B
+//- Exibir matriz A original
+//- Exibir vetor B original
+//- Exibir dimensão n
+//- Exibir matriz A triangularizada
+//- Exibir vetor B escalonado
+//- Exibir solução X do sistema
+//- Verificar os resultados AX ≈ B
+//Sistemas:
+
+// Sistema S₃ - Exemplo 1
+// x1 + x2 + x3 = 1
+// 2x1 + x2 − x3 = 0
+// 2x1 + 2x2 + x3 = 1
+//A_original = [1, 1, 1; 2, 1, -1; 2, 2, 1]
+//B_original = [1; 0; 1]
+
+A = [1.0, 1.0, 1.0;
+     2.0, 1.0, -1.0;
+     2.0, 2.0, 1.0];
+
+B = [1.0; 0.0; 1.0];
+
+// Parâmetros de controle
+epsilon = 1.0e-6;
+Nmax = 100;
+
+// Chamada da função
+gauss_sem_pivoteamento(A,B);
+
+
+
+
+// Sistema S₃ - Exemplo 2
+// x1 + x2 + x3 = −2
+// 2x1 + x2 − x3 = 1
+// 2x1 − x2 + x3 = 3
+
+// Sistema S₃ - Exemplo 3
+// x1 + 10x2 + 3x3 = 27
+// 4x1 + x3 = 6
+// 2x1 + x2 + 4x3 = 12
+
+// Sistema S₄
+// 1,0x1 + 0,2x2 + 1,0x3 + 0,3x4 = 4,0
+// 0,3x1 + 2,0x2 − 0,3x3 − 0,9x4 = 7,5
+// 0,0x1 + 2,0x2 − 0,3x3 + 0,8x4 = 4,4
+// 0,6x1 + 3,2x2 − 1,8x3 + 0,4x4 = 10
+
+
 
 // Problema 1.2 - Resolver sistemas tridiagonais pelo método de Thomas (TDMA)
 //     - Exibir vetores originais a, b, c, d
@@ -444,12 +477,56 @@ endfunction
 //     - Exibir solução X do sistema
 //     - Verificar os resultados AX ≈ D (erro absoluto)
 
+
+// Sistema S₄ - Exemplo 1
+// 20x1 − 5x2           = 1100
+// −5x1 + 15x2 − 5x3     = 100
+//       −5x2 + 15x3 − 5x4 = 100
+//             −5x3 + 19x4 = 100
+
+// Sistema S₄ - Exemplo 2
+// −x1 + 3x2 − x3     = 1
+// −x2 + 3x3 − x4     = 1
+// −x3 + 3x4          = 2
+
+
 // Problema 1.3 - Resolver sistemas com métodos iterativos:
 //     - Gauss-Jacobi e Gauss-Seidel
 //     - Usar precisão de 6 casas decimais
 //     - Critério de parada: erro < 1e-6
 //     - Vetor inicial: nulo
 //     - Se necessário, aplicar reordenação gulosa para convergência
+
+// Sistema S₃ - Exemplo 1
+// 10x + y + z     = 12
+// x + 5y + 9z     = 15
+// 2x + 8y − 4z    = 6
+// 6x − y + z      = 7
+
+// Sistema S₃ - Exemplo 2
+// x + 8y − z      = 16
+// x + y + 5z      = 18
+// x₁ + 10x₂ + 3x₃ = 27
+
+// Sistema S₃ - Exemplo 3
+// 4x₁ + x₃        = 6
+// 2x₁ + x₂ + 4x₃  = 12
+// 7x + y − z      = 13
+
+// Sistema S₃ - Exemplo 4
+// x + 8y + z      = 30
+// 2x − y + 5z     = 21
+
+// Sistema S₂
+// 5x − y          = 13
+// 2x + 4y         = 14
+
+// Sistema S₄ (repetido da imagem anterior)
+// 0,1x₁ + 0,2x₂ + 1,0x₃ + 0,3x₄ = 4,0
+// 0,3x₁ + 2,0x₂ − 0,3x₃ − 0,9x₄ = 7,5
+// 0,0x₁ + 2,0x₂ − 0,3x₃ + 0,8x₄ = 4,4
+// 0,6x₁ + 3,2x₂ − 1,8x₃ + 0,4x₄ = 10
+
 //
 // Exibir no console:
 //     - Matrizes A e B originais
