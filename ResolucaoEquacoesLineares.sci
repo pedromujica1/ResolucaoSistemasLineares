@@ -524,20 +524,13 @@ endfunction
 // −x1 + 3x2 − x3     = 1
 // −x2 + 3x3 − x4     = 1
 // −x3 + 3x4          = 2
-a = [0; -1; -1; -1];
-b = [3; 3; 3; 3];
-c = [-1; -1; -1; 0];
-d = [2; 1; 1; 2];
-sistemaS4122 = tdma_thomas(a,b,c,d); //chamada de funções
+//a = [0; -1; -1; -1];
+//b = [3; 3; 3; 3];
+//c = [-1; -1; -1; 0];
+//d = [2; 1; 1; 2];
+//sistemaS4122 = tdma_thomas(a,b,c,d); //chamada de funções
 
-
-// Problema 1.3 - Resolver sistemas com métodos iterativos:
-//     - Gauss-Jacobi e Gauss-Seidel
-//     - Usar precisão de 6 casas decimais
-//     - Critério de parada: erro < 1e-6
-//     - Vetor inicial: nulo
-//     - Se necessário, aplicar reordenação gulosa para convergência
-
+// Problema 1.3 - Resolver sistemas com métodos iterativos Gauss-Jacobi e Gauss-Seidel as soluções com 6 casas decimais de precisão:
 // Sistema S₃ - Exemplo 1
 // 10x + y + z     = 12
 // x + 5y + 9z     = 15
