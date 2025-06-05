@@ -573,10 +573,30 @@ endfunction
 //     - Ingerir combinação que satisfaça 170u A, 180u B, 140u C
 //     - Resolver o sistema por todos os métodos (Gauss, LU, TDMA se aplicável, Jacobi, Seidel)
 
+
+
 // Problema 2.2 - Produção de 4 tipos de PCs com restrições de recursos:
 //     - Recursos: mão-de-obra, metais, plásticos, eletrônicos
 //     - Resolver o sistema para encontrar quantos PCs de cada tipo devem ser produzidos
 //     - Resolver por todos os métodos possíveis
+
+//3x₁ +  4x₂ +  7x₃ + 20x₄ = 504      (mão de obra)  
+//20x₁ + 25x₂ + 40x₃ + 50x₄ = 1970    (metais)  
+//10x₁ + 15x₂ + 20x₃ + 22x₄ = 970     (plásticos)  
+//10x₁ +  8x₂ + 10x₃ + 15x₄ = 601     (componentes)
+
+//A = [3, 4, 7, 20;     20, 25, 40, 50;     10, 15, 20, 22;    10, 8, 10, 15];
+//B = [504; 1970; 970; 601];
+
+//sistemaS3112 =gauss_sem_pivoteamento(A,B); 
+//sistemaS3112 = lu_crout(A,B); //chamada de metódos
+// TA CAGADO
+//sistemaS3112 = gauss_seidel_guloso(A,B,0.000001,100); //chamada de funções
+//sistemaS3112 = gauss_jacobi_guloso(A,B,0.000001,100); //chamada de funções
+//O método TDMA (Thomas Algorithm) é uma solução eficiente e direta para sistemas lineares cuja matriz dos coeficientes é tridiagonal, ou seja, possui elementos diferentes de zero apenas na diagonal principal, na diagonal abaixo e na diagonal acima dela. 
+//nesse exemplo 2.2 possui diversos elementos fora dessas três diagonais principais. Isso descaracteriza a matriz como tridiagonal. Portanto: Não atende ao pré-requisito estrutural do método TDMA.
+
+//sistemaS3112 = tdma_thomas([0; 3; 10; 10], [20; 25; 15; 8], [4; 40; 20; 10], B); //chamada de funções
 
 // Problema 2.3 - Transporte de cargas por 3 tipos de caminhões (C1, C2, C3)
 //     - Requisitos: 12 Cargas A, 10 Cargas B, 16 Cargas C
