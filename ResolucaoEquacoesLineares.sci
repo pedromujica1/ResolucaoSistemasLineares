@@ -3,9 +3,7 @@
 //Resolvendo Sistemas de Equações Lineares
 funcprot(0);
 clear(); clc();
-h = 300; F = 0.8; D = 14; C = 1200; //constantes exercicio 2.2
-d = 10 //constante exercicio 2.3
-O = 5 //constante exercicio 2.4
+
 printf("*** RESOLUÇÃO DE SISTEMAS DE EQUAÇÕES LINEARES ***\n")
 
 function x = gauss_sem_pivoteamento(A_original, B_original)
@@ -268,7 +266,7 @@ function X = tdma_thomas(a, b, c, d)
 endfunction
 
 function X = lu_crout(A, B)
-    printf("***** MÉTODO DIRETO: FATORAÇÃO LU por CROUT\n *****")
+    printf("***** MÉTODO DIRETO: FATORAÇÃO LU por CROUT *****\n")
 
     // Armazena cópias originais
     A_original = A;
@@ -318,7 +316,7 @@ function X = lu_crout(A, B)
     end
     printf("\n---------------------------")
     printf("\n****Dimensão de n: %d variáveis****", n);
-    printf("-----------------------------")
+    printf("\n-----------------------------")
 
     //mostrar Matriz triangularizada e vetor B escalonado
     printf("\n*****FATOR L:*****")
@@ -344,7 +342,7 @@ function X = lu_crout(A, B)
     mprintf(" x(%d) = %.6f\n", [(1:n)', X]);
 
     // Verificação AX ≈ B
-    printf("\nVerificação dos resultados (A*X ≈ B):")
+    printf("\nVerificação dos resultados (A*X ≈ B):\n")
     for i = 1:n
         s = 0;
         for j = 1:n
@@ -608,3 +606,22 @@ endfunction
 //     - Com base em 4 equações com combinações desses itens
 //     - Resolver o sistema por todos os métodos disponíveis
 
+// 3m + 2c -  a +  s = 10
+// 2m - 2c + 4a - 3s = 6
+//  m +  c +  a -  s = 7
+// 2m + 3c +  a + 4s = 15
+
+//A = [3,  2, -1,  1;
+//     2, -2,  4, -3;
+//     1,  1,  1, -1;
+//     2,  3,  1,  4]
+//B = [10; 6; 7; 15]
+
+//x = gauss_sem_pivoteamento(A,B)
+//x = lu_crout(A,B)
+
+//Algoritmo de Thomas não é aplicável pois todos os valores fora da faixa tridiagonal são diferentes de zero nesse sistema
+
+//x = gauss_jacobi_guloso(A,B,1.0e-6,100)
+//x = gauss_seidel_guloso(A,B,1.0e-6,100)
+//Gauss-seidel e Gauss-jacobi não funcionaram pois o sistema não é dominante na diagonal, divergiram completamente
