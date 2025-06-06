@@ -598,10 +598,29 @@ endfunction
 
 //sistemaS3112 = tdma_thomas([0; 3; 10; 10], [20; 25; 15; 8], [4; 40; 20; 10], B); //chamada de funções
 
+
 // Problema 2.3 - Transporte de cargas por 3 tipos de caminhões (C1, C2, C3)
 //     - Requisitos: 12 Cargas A, 10 Cargas B, 16 Cargas C
 //     - Cada caminhão transporta diferentes combinações
 //     - Resolver o sistema por todos os métodos
+
+// 1x₁ + 1x₂ + 1x₃ = 12     (Carga A)
+// 0x₁ + 1x₂ + 2x₃ = 10     (Carga B)
+// 2x₁ + 1x₂ + 1x₃ = 16     (Carga C)
+
+//A = [
+//    1, 1, 1;  // Carga A
+//    0, 1, 2;  // Carga B
+//    2, 1, 1   // Carga C
+//];
+
+//B = [12; 10; 16];
+//sistemaTransp = gauss_sem_pivoteamento(A,B); 
+//sistemaTransp = lu_crout(A,B);
+//sistemaTransp = gauss_seidel_guloso(A,B,0.000001,100);
+//sistemaTransp = gauss_jacobi_guloso(A,B,0.000001,100);
+//TDMA não se aplica aqui pois a matriz A não é tridiagonal.
+
 
 // Problema 2.4 - Estoque de ferramentas:
 //     - Determinar quantidades de martelos (m), chaves (c), alicates (a) e serras (s)
