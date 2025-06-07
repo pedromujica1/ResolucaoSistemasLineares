@@ -533,19 +533,22 @@ endfunction
 // 10x + y + z     = 12
 // x + 5y + 9z     = 15
 // 2x + 8y − 4z    = 6
-// 6x − y + z      = 7
+
 
 // Sistema S₃ - Exemplo 2
+// 6x − y + z      = 7
 // x + 8y − z      = 16
 // x + y + 5z      = 18
-// x₁ + 10x₂ + 3x₃ = 27
+
 
 // Sistema S₃ - Exemplo 3
+// x₁ + 10x₂ + 3x₃ = 27
 // 4x₁ + x₃        = 6
 // 2x₁ + x₂ + 4x₃  = 12
-// 7x + y − z      = 13
+
 
 // Sistema S₃ - Exemplo 4
+// 7x + y − z      = 13
 // x + 8y + z      = 30
 // 2x − y + 5z     = 21
 
