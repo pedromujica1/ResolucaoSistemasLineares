@@ -91,7 +91,7 @@ function X = gauss_seidel_guloso(A_original, B_original, epsilon, Nmax)
 
     n = size(A_original,1);
     X0 = zeros(n,1);
-    printf("\nO sistema possui %d variáveis (dimensão da raiz x).\n", n);
+    printf("\n Entrada - dimensão n da matriz quadrada:\n %d .\n", n);
     X = X0;
     
     printf("\n Matriz A original:\n");
@@ -368,6 +368,7 @@ function [X, k] = gauss_jacobi_guloso(A, B, epsilon, Nmax)
 
     n = size(A,1);
     X0 = zeros(n,1);
+    printf("\n Entrada - dimensão n da matriz quadrada:\n %d .\n", n);
     X = X0;
     A_original = A;
     B_original = B;
@@ -533,6 +534,10 @@ endfunction
 // 10x + y + z     = 12
 // x + 5y + 9z     = 15
 // 2x + 8y − 4z    = 6
+A = [10, 1.0, 1.0;   1.0, 5.0, 9.0;   2.0, 8.0, -4.0];
+B = [12; 15; 6.0];
+sistema131 = gauss_jacobi_guloso(A, B, 1e-6, 100)
+// sistema131 = gauss_seidel_guloso(A, B, 1e-6, 100)
 
 
 // Sistema S₃ - Exemplo 2
