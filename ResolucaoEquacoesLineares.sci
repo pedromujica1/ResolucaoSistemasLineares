@@ -534,9 +534,9 @@ endfunction
 // 10x + y + z     = 12
 // x + 5y + 9z     = 15
 // 2x + 8y − 4z    = 6
-A = [10, 1.0, 1.0;   1.0, 5.0, 9.0;   2.0, 8.0, -4.0];
-B = [12; 15; 6.0];
-sistema131 = gauss_jacobi_guloso(A, B, 1e-6, 100)
+// A = [10, 1.0, 1.0;   1.0, 5.0, 9.0;   2.0, 8.0, -4.0];
+// B = [12; 15; 6.0];
+// sistema131 = gauss_jacobi_guloso(A, B, 1e-6, 100)
 // sistema131 = gauss_seidel_guloso(A, B, 1e-6, 100)
 
 
